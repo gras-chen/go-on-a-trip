@@ -35,6 +35,7 @@
     
   </head>
   <body>
+    <!-- top nav  -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand ml-lg-5" href="../index.html">Go On A __</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,12 +72,12 @@
             </form>
         </div>
     </nav>
+    <!-- banner img  -->
     <div class="navPic bg-cover"></div>
 
+    <!-- open data -->
     <div class="container my-3 mx-md-auto">
-      <h4 class="text-info font-weight-bold">| 景點介紹 <small class="text-muted">Let's Go</small></h4>
-
-          
+      <h4 class="text-info font-weight-bold">| 景點介紹 <small class="text-muted">Let's Go</small></h4>  
       <div class="row" id="forest">
         <div class="col-12" id="loading">
           <div class="d-flex justify-content-center my-5"  >
@@ -100,7 +101,7 @@
     </div>
     
     <footer class="footer fixed-bottom">
-      Go On A__ 版權所有 
+      © GrasChen 2020
     </footer>
 
     <!-- Option 2: jQuery, Popper.js, and Bootstrap JS-->
@@ -111,11 +112,11 @@
       $(function(){
         $.ajax({
           type: "GET",
-          url: "camp-lets-go.php",
+          url: "../js/ODwsvTravelStay.aspx",
           dataType: "json",
           success: showdata,
           error: function(){
-            alert("error: camp-lets-go.php");
+            alert("error: js/ODwsvTravelStay.asp");
           },
         });
       });
