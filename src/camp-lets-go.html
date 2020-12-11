@@ -48,8 +48,8 @@
                 <li class="nav-item">
                     <a class="nav-link" href="../index.html">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="camp-about.html">About Us</a>
+                <li class="nav-item active">
+                    /a><a class="nav-link" href="camp-lets-go.html">Let's Go!</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -63,8 +63,8 @@
                         <a class="dropdown-item" href="camp-lets-go.html">Let's Go!</a> -->
                     </div>
                 </li>
-                <li class="nav-item mr-3 active">
-                    <a class="nav-link" href="camp-lets-go.html">Let's Go!</a>
+                <li class="nav-item mr-3">
+                    <a class="nav-link" href="camp-about.html">About Us<
                 </li>
             </ul>
             <!-- <form class="form-inline my-2 mr-lg-5">
@@ -79,14 +79,14 @@
     <!-- open data -->
     <div class="container my-3 mx-md-auto">
       <h4 class="text-info font-weight-bold">| Let's Go <small class="text-muted">Let's Go</small></h4>
-      <div class="row">
+      <!-- <div class="row">
         <div class="col-6">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <label class="input-group-text" for="citylist">縣市</label>
             </div>
             <select class="custom-select" id="citylist">
-              <option value="#">請選擇縣市</option>
+              <option value="#">請選擇縣市鄉鎮</option>
             </select>
           </div>
         </div>
@@ -96,20 +96,20 @@
               <label class="input-group-text" for="townlist">鄉鎮</label>
             </div>
             <select class="custom-select" id="townlist">
-              <option value="#">請選擇鄉鎮</option>
+              <option value="#">請選擇</option>
             </select>
           </div>
         </div>
         <div class="row">
           <div class="col-12">
             <ul class="list-group" id="showcity">
-              <!-- append 搜尋結果 -->
+              append 搜尋結果
             </ul>  
           </div>
         </div>
-      </div>
+      </div> -->
 
-      <!-- <div class="row" id="forest">
+      <div class="row" id="forest">
         <div class="col-12" id="loading">
           <div class="d-flex justify-content-center my-5"  >
               <div class="spinner-border text-success" role="status">
@@ -126,9 +126,9 @@
               <a href="../src/camp-tent-detail.html" class="btn btn-block btn-warning">MORE ...</a>
             </div>
           </div>
-        </div>
+        </div> -->
         
-      </div> -->
+      </div>
     </div>
     
     <footer class="footer fixed-bottom">
@@ -141,50 +141,69 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/taiwan_districts.json"></script>
+    <script src="../tw-city-selector-master/tw-city-selector-master/src/tw-city-selector.js"></script>
 
     <script>
-      var cityData = [];
-      // var townData = [];
+      // new TwCitySelector();
 
-      // 選單一列出縣市，選單二列出鄉鎮(全)
-      for(var i=0; i<city.length; i++){
-        console.log(city[i].name);
-        // console.log(city[i].districts);
-        var strCITY = '<option value="'+city[i].name+'">'+city[i].name+'</option>';
-        $("#citylist").append(strCITY);
+      // var cityData = [];
 
-        for(var j=0; j<city[i].districts.length; j++){
-          var townData = city[i].districts[j];
-          var strTOWN = '<option value="'+city[i].districts[j].name+'">'+city[i].districts[j].name+'</option>';
-          // console.log(townData);
-          $("#townlist").append(strTOWN);
-        }
-      }
-      
+      // $(function(){
+      //   $.ajax({
+      //     type: "GET",
+      //     url: "../js/ODwsvTravelStay.aspx",
+      //     dataType: "json",
+      //     success: showcity,
+      //     error: function(){
+      //       alert("error: js/ODwsvTravelStay.asp");
+      //     },
+      //   });
 
-      $(function(){
-        $.ajax({
-          type: "GET",
-          url: "../js/ODwsvTravelStay.aspx",
-          dataType: "json",
-          success: showcity,
-          error: function(){
-            alert("error: js/ODwsvTravelStay.asp");
-          },
-        });
+      //   // 選單一列出縣市，選單二列出鄉鎮(全)
+      //   for(var i=0; i<city.length; i++){
+      //     console.log(city[i].name);
+      //     // console.log(city[i].districts);
+      //     var strCITY = '<option value="'+city[i].name+'">'+city[i].name+'</option>';
+      //     $("#citylist").append(strCITY);
 
-        $("#citylist").bind("input propertychange", function(){
-          console.log($(this).val());
-          var selectedCity = $(this).val();
+          // for(var j=0; j<city[i].districts.length; j++){
+          //   var townData = city[i].districts[j];
+          //   var strTOWN = '<option value="'+city[i].districts[j].name+'">'+city[i].districts[j].name+'</option>';
+          //   // console.log(townData);
+          //   $("#townlist").append(strTOWN);
+          // }
+        // }
 
-          var regionCity = []; //儲存選定縣市的資料
 
-          cityData.forEach(function(item){
-            if(item.City === selectedCity){
-              // console.log(regionCity);
-              regionCity.push(item);
-            }
-          });
+        // $("#townlist").bind("input propertychange", function(){
+        //   var selectedTown = $(this).val();
+        //   console.log(cityData);
+        //   // var regionCity = []; //儲存選定縣市的資料
+        //   cityData.forEach(function(data){
+        //     if(data.City === selectedTown){
+        //       console.log(regionCity);
+        //       regionCity.push(data);
+        //       for(var i=0; i<10; i++){
+        //         strHtml = '<div class="col-md-3 mb-3"><div class="card"><img src="'+data[i].Photo+'" class="card-img-top" alt=""><div class="card-body"><h5 class="card-title">'+ data[i].Name +'</h5><p class="card-text">'+ data[i].Address +'</p><p class="card-text">'+ data[i].Tel +'</p><a href="'+data[i].Url+'" class="btn btn-block btn-success">Website</a></div></div></div>';
+        //         $("#forest").append(strHtml);
+        //       }
+        //       $("#loading").hide();
+        //     }
+        //   });
+        // });
+
+        // $("#citylist").bind("input propertychange", function(){
+        //   console.log($(this).val());
+        //   var selectedCity = $(this).val();
+        //   // var regionCity = []; //儲存選定縣市的資料
+
+        //   cityData.forEach(function(item){
+        //     if(item.City === selectedCity){
+        //       // console.log(regionCity);
+        //       // regionCity.push(item);
+              
+        //     }
+        //   });
           // console.log(regionCity);
 
           // 清空showcity
@@ -199,22 +218,43 @@
           //   var strShowCity = '<li class="list-group-item"><h5>'+regionCity[i].properties.name+'</h5><p>'+ regionCity[i].properties.address +'<br>電話: '+ regionCity[i].properties.phone +'<br>成人口罩: '+ regionCity[i].properties.mask_adult +'<br>小孩口罩:'+ regionCity[i].properties.mask_child +'</p></li>';
           //   $("#showcity").append(strShowCity);
           // }
+        // });
+      // });
+
+      // function showdata(data){
+      //   // console.log(data);
+      //   for(var i=0; i<10; i++){
+      //     strHtml = '<div class="col-md-3 mb-3"><div class="card"><img src="'+data[i].Photo+'" class="card-img-top" alt=""><div class="card-body"><h5 class="card-title">'+ data[i].Name +'</h5><p class="card-text">'+ data[i].Address +'</p><p class="card-text">'+ data[i].Tel +'</p><a href="'+data[i].Url+'" class="btn btn-block btn-success">Website</a></div></div></div>';
+      //     $("#forest").append(strHtml);
+      //   }
+      //   $("#loading").hide();
+      // }
+      // function showcity(data) {
+      //     console.log(data);
+      //     cityData = data; //將原始資料放進自定義陣列cityData中
+      //     console.log(cityData);
+      //   }
+
+
+      $(function(){
+        $.ajax({
+          type: "GET",
+          url: "../js/ODwsvTravelStay.aspx",
+          dataType: "json",
+          success: showdata,
+          error: function(){
+            alert("error: js/ODwsvTravelStay.asp");
+          },
         });
       });
-
       function showdata(data){
         // console.log(data);
-        for(var i=0; i<10; i++){
+        for(var i=0; i<50; i++){
           strHtml = '<div class="col-md-3 mb-3"><div class="card"><img src="'+data[i].Photo+'" class="card-img-top" alt=""><div class="card-body"><h5 class="card-title">'+ data[i].Name +'</h5><p class="card-text">'+ data[i].Address +'</p><p class="card-text">'+ data[i].Tel +'</p><a href="'+data[i].Url+'" class="btn btn-block btn-success">Website</a></div></div></div>';
           $("#forest").append(strHtml);
         }
         $("#loading").hide();
       }
-      function showcity(data) {
-          console.log(data);
-          cityData = data; //將原始資料放進自定義陣列cityData中
-          console.log(cityData);
-        }
     </script>
     
     
